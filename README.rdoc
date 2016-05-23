@@ -1,28 +1,28 @@
-== README
+新開一個專案，實作一個論壇 Forum 討論區
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* 使用者可以註冊、登入 (使用 Devise gem)
+* 使用者可以張貼主題 Topic
+* 使用者可以瀏覽主題，並且可以進行回覆 (Comment)
+* 可以看到每篇主題有多少回覆數
+* 可以用最後回覆時間、最多人回覆進行文章排序
+* 張貼文章時，可以選擇分類(多選)，例如 [ ] 商業類 [ ] 技術類 [ ] 心理類
+* 使用者可以瀏覽特定分類的主題，而且也可以進行分頁和進行排序
+* 新增一個 About 本站介紹頁面，並顯示統計數據 1. 全站有多少使用者 2. 全站總共有多少主題和回覆 
+* 使用者可以編輯個人簡介，點擊使用者 ID 可以進入使用者 Profile 頁，看到個人簡介
+* 使用者 Profile 頁可以看到他張貼過的文章和回覆。
+* 套 Bootstrap 樣式
 
-Things you may want to cover:
+以下是一些 optional 的點子，請依個人進度和喜好來實作：
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* 使用者可以看到每篇文章有多少瀏覽數，也可以用最多人瀏覽數進行文章排序
+* 使用者(只)可以編輯和刪除自己張貼的文章和回覆
+* 使用者可以收藏文章、瀏覽自己收藏的文章列表
+* 主題列表中，也列出所有參與該主題討論的使用者名稱
+* 撰寫 Topic 和 Comment 時可以選擇草稿(Draft)狀態。草稿狀態的 Topic 和 Comment 只有自己看得到。稍候可以編輯將狀態改成「發布」。
+* 可以分享、按贊到  Facebook: https://developers.facebook.com/docs/plugins/like-button/
+* 利用 https://en.gravatar.com/ 根據使用者 email 顯示使用者圖像
+* 提供後台管理介面
+** 後台可以 CRUD 文章的分類 (但不能刪除已經有被使用的分類)
+** 後台可以瀏覽所有使用者清單，並且編輯使用者基本資料，以及是否有admin 的權限
+** 進入後台必須有管理員(admin)權限限制
+** 管理員(admin)在前台可以刪除任何人的文章
