@@ -1,4 +1,26 @@
 <h2><%= @post.title %></h2>
 <p><%= @post.content %></p>
 
+<p>New comment:</p>
+<%= form_for [@post, Comment.new] do |f| %>
+  <%= f.text_area :content %>
+  <%= f.submit %>
+<% end %>
+<% @post.comments.each do |c| %>
+<p>
+  <%= c.user_email %>: <%= c.content %>
+  <% if current_user.manage?(c) %>
+    <%= link_to 'Edit', post_path(@post, :edit_comment => c) %>
+    <%= link_to 'Delete', post_comment_path(@post, c), :method => :delete, :data => { :confirm => "Are you sure you want to do this?" } %>
+  <% end %>
+  <% if params[:edit_comment] && params[:edit_comment].to_i == c.id %>
+  <% #TODO: Will refactor after using ajax %>
+    <%= form_for [@post, c] do |f| %>
+      <%= f.text_area :content %>
+      <%= f.submit %>
+    <% end %>
+  <% end %>
+</p>
+<% end %>
+<br>
 <%= link_to 'Back to index page', posts_path %>

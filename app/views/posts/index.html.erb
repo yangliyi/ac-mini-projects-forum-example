@@ -7,7 +7,7 @@
   </tr>
   <% @posts.each do |p| %>
   <tr>
-    <td><%= p.title %></td>
+    <td><%= link_to p.title, post_path(p) %></td>
     <td><%= p.user_email %></td>
     <td>
     <% if current_user.manage?(p) %>
