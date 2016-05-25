@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     elsif params[:order] && params[:order] == 'last_commented_at'
       sort_by = "last_commented_at DESC"
     end
-    @posts = @posts.order(sort_by)
+    @posts = @posts.order(sort_by).page(params[:page]).per(5)
 
   end
 
