@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:notice] = "Successfully created your new comment!"
+      @post.update(last_commented_at: Time.now)
     else
       flash[:alert] = "Sorry you failed creating your new comment. Please notice that content can not be blank."
     end

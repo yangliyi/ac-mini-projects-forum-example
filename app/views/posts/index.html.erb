@@ -1,14 +1,19 @@
 <%= link_to 'New post', new_post_path %>
+<p><%= link_to 'Show the latest posts', posts_path %></p>
 <table>
   <tr>
     <th>Title</th>
+    <th><%= link_to 'Comments count', posts_path(posts_order(:order => "comments_count")) %></th>
     <th>User</th>
+    <th><%= link_to 'Last commented at', posts_path(posts_order(:order => "last_commented_at")) %></th>
     <th>Action</th>
   </tr>
   <% @posts.each do |p| %>
   <tr>
     <td><%= link_to p.title, post_path(p) %></td>
+    <td><%= p.comments_count %></td>
     <td><%= p.user_email %></td>
+    <td><%= p.last_commented_at %></td>
     <td>
     <% if current_user.manage?(p) %>
       <%= link_to 'Edit', edit_post_path(p) %>

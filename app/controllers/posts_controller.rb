@@ -5,6 +5,16 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+
+    sort_by = "updated_at DESC"
+    if params[:order] && params[:order] == 'comments_count'
+      sort_by = "comments_count DESC"
+    elsif params[:order] && params[:order] == 'last_commented_at'
+      sort_by = "last_commented_at DESC"
+    end
+    @posts = @posts.order(sort_by)
+
+
   end
 
   def new
