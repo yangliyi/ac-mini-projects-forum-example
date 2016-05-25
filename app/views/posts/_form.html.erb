@@ -1,6 +1,13 @@
+<div>
+<%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %></div>
+
+<div>
 <%= f.label :title %>
 <%= f.text_field :title %>
+</div>
 
+<div>
 <%= f.label :content %>
 <%= f.text_area :content %>
+</div>
 <%= f.submit %>

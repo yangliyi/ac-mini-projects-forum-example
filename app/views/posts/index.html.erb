@@ -1,8 +1,13 @@
-<%= link_to 'New post', new_post_path %>
+<p><%= link_to 'New post', new_post_path %></p>
+<% Category.all.each do |c| %>
+<%= link_to c.name, posts_path(posts_filter(:category => c)) %>
+<% end %>
+<%= link_to 'All Category', posts_path %>
 <p><%= link_to 'Show the latest posts', posts_path %></p>
 <table>
   <tr>
     <th>Title</th>
+    <th>Category</th>
     <th><%= link_to 'Comments count', posts_path(posts_order(:order => "comments_count")) %></th>
     <th>User</th>
     <th><%= link_to 'Last commented at', posts_path(posts_order(:order => "last_commented_at")) %></th>
@@ -11,6 +16,11 @@
   <% @posts.each do |p| %>
   <tr>
     <td><%= link_to p.title, post_path(p) %></td>
+    <td>
+      <% p.categories.each do |p| %>
+        <%= p.name %>
+      <% end %>
+    </td>
     <td><%= p.comments_count %></td>
     <td><%= p.user_email %></td>
     <td><%= p.last_commented_at %></td>

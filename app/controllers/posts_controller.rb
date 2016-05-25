@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   before_action :find_post, :only => [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    if params[:category]
+      @posts = Post.includes(:categories, :user).joins(:posts_categories).where(:posts_categories => {:category_id => params[:category]} )
+    else
+      @posts = Post.includes(:categories, :user).all
+    end
 
     sort_by = "updated_at DESC"
     if params[:order] && params[:order] == 'comments_count'
@@ -13,7 +17,6 @@ class PostsController < ApplicationController
       sort_by = "last_commented_at DESC"
     end
     @posts = @posts.order(sort_by)
-
 
   end
 
@@ -61,7 +64,7 @@ class PostsController < ApplicationController
   protected
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id)
+    params.require(:post).permit(:title, :content, :user_id, :category_ids => [])
   end
 
   def find_post
